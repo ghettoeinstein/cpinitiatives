@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join the CPI Network — Partner Application</title>
+<meta name="description" content="Apply to join Community Partners Initiatives as a verified partner organization.">
+<link rel="canonical" href="https://cpinitiatives.org/join.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Join the CPI Network — Partner Application">
+<meta property="og:description" content="Apply to join Community Partners Initiatives as a verified partner organization.">
+<meta property="og:url" content="https://cpinitiatives.org/join.html">
+<meta property="og:site_name" content="Community Partners Initiatives">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/join.js" defer></script>
+
+</head>
+<body class="">
+
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="navbar">
+  <div class="container navbar-inner">
+    <a class="brand" href="./">
+      <span class="brand-mark">CPI</span>
+      <span>Community Partners Initiatives</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="./">Home</a><a href="find-support.html">Find Support</a><a href="partners/">Partners</a><a href="initiatives/">Initiatives</a><a href="resources/">Resources</a><a href="about.html">About</a>
+    </nav>
+    <div class="nav-utility">
+      <a class="btn btn-tertiary" style="text-decoration:none" href="join.html">Join CPI</a>
+      <a class="btn btn-primary donate-btn-nav" href="donate.html">Donate</a>
+    </div>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-nav-toggle>
+      <span></span>
+    </button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobile-menu" data-mobile-menu>
+  <div class="container">
+    <a href="./">Home</a><a href="find-support.html">Find Support</a><a href="partners/">Partners</a><a href="initiatives/">Initiatives</a><a href="resources/">Resources</a><a href="about.html">About</a><a href="needs/">Community Needs</a><a href="get-involved.html">Get Involved</a>
+    <a class="btn btn-primary btn-block" href="donate.html">Donate</a>
+    <a class="btn btn-secondary btn-block mt-16" href="join.html">Join CPI</a>
+  </div>
+</div>
+<div class="mobile-sticky-cta">
+  <a class="btn btn-primary btn-block" href="donate.html">Donate to CPI</a>
+</div>
+
+<main id="main">
+
+<section class="page-header">
+  <div class="container">
+    <span class="hero-eyebrow">Join CPI</span>
+    <h1>Join the CPI Network</h1>
+    <p class="hero-sub">CPI brings community organizations together around shared needs, shared infrastructure, and real collaboration.</p>
+  </div>
+</section>
+<section class="light-page">
+  <div class="container">
+    <div class="wizard">
+      <div class="wizard-steps"><div class="wizard-step-dot" data-step-dot="0">1. Organization</div><div class="wizard-step-dot" data-step-dot="1">2. Services</div><div class="wizard-step-dot" data-step-dot="2">3. Population</div><div class="wizard-step-dot" data-step-dot="3">4. Geography</div><div class="wizard-step-dot" data-step-dot="4">5. Participation</div><div class="wizard-step-dot" data-step-dot="5">6. Review</div></div>
+      <form id="join-form" novalidate>
+        <div class="wizard-panel is-active" data-panel="0">
+          <div class="form-grid">
+            <div class="field"><label for="org-name">Organization Name *</label><input type="text" id="org-name" name="org_name" required><span class="error-text">Please enter your organization's name.</span></div>
+            <div class="field"><label for="org-website">Website</label><input type="url" id="org-website" name="website" placeholder="https://"></div>
+            <div class="field"><label for="contact-name">Primary Contact *</label><input type="text" id="contact-name" name="contact_name" required><span class="error-text">Please enter a primary contact.</span></div>
+            <div class="field"><label for="contact-email">Email *</label><input type="email" id="contact-email" name="email" required><span class="error-text">Please enter a valid email.</span></div>
+            <div class="field"><label for="contact-phone">Phone</label><input type="tel" id="contact-phone" name="phone"></div>
+          </div>
+        </div>
+        <div class="wizard-panel" data-panel="1">
+          <div class="field"><label for="services">What services do you provide? *</label>
+          <textarea id="services" name="services" required placeholder="e.g. transitional housing, job training, behavioral health counseling"></textarea>
+          <span class="error-text">Please describe your services.</span></div>
+        </div>
+        <div class="wizard-panel" data-panel="2">
+          <div class="field"><label for="population">Who do you serve? *</label>
+          <textarea id="population" name="population" required placeholder="e.g. justice-impacted adults, families, youth"></textarea>
+          <span class="error-text">Please describe who you serve.</span></div>
+        </div>
+        <div class="wizard-panel" data-panel="3">
+          <div class="field"><label for="geography">Where do you operate? *</label>
+          <textarea id="geography" name="geography" required placeholder="Cities, neighborhoods, or service area"></textarea>
+          <span class="error-text">Please describe your service area.</span></div>
+        </div>
+        <div class="wizard-panel" data-panel="4">
+          <div class="field">
+            <label>How would you like to participate? *</label>
+            <div class="checkbox-grid">
+              <label class="checkbox-tile"><input type="checkbox" name="participation" value="Receive referrals">Receive referrals</label><label class="checkbox-tile"><input type="checkbox" name="participation" value="Send referrals">Send referrals</label><label class="checkbox-tile"><input type="checkbox" name="participation" value="Join initiatives">Join initiatives</label><label class="checkbox-tile"><input type="checkbox" name="participation" value="Offer services">Offer services</label><label class="checkbox-tile"><input type="checkbox" name="participation" value="Hire participants">Hire participants</label><label class="checkbox-tile"><input type="checkbox" name="participation" value="Provide funding">Provide funding</label><label class="checkbox-tile"><input type="checkbox" name="participation" value="Provide facilities">Provide facilities</label><label class="checkbox-tile"><input type="checkbox" name="participation" value="Volunteer">Volunteer</label><label class="checkbox-tile"><input type="checkbox" name="participation" value="Other">Other</label>
+            </div>
+            <span class="error-text" id="participation-error">Please select at least one option.</span>
+          </div>
+        </div>
+        <div class="wizard-panel" data-panel="5">
+          <h2 style="font-size:1.1rem">Review &amp; Submit</h2>
+          <div id="review-summary" class="stack mt-16"></div>
+        </div>
+        <div class="wizard-panel" data-panel="confirmation">
+          <div class="confirmation-panel">
+            <h2>Thank you for joining the CPI network.</h2>
+            <p class="mt-16">Our team will review your organization and contact you regarding
+            verification and next steps. If your email client doesn't open automatically,
+            use the button below to send your application.</p>
+            <div class="confirmation-id" id="application-id"></div>
+            <div class="hero-ctas text-center mt-24" style="justify-content:center">
+              <a class="btn btn-primary" id="email-application-btn" href="#">Email My Application</a>
+              <a class="btn btn-secondary" href="index.html">Return Home</a>
+            </div>
+          </div>
+        </div>
+        <div class="wizard-actions" data-wizard-actions>
+          <button type="button" class="btn btn-secondary" data-wizard-back disabled>Back</button>
+          <button type="button" class="btn btn-primary" data-wizard-next>Continue</button>
+          <button type="submit" class="btn btn-primary" data-wizard-submit hidden>Submit Partner Application</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-top">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand"><span class="brand-mark">CPI</span><span>Community Partners Initiatives</span></div>
+        <p>One community. Connected. CPI unites housing, workforce, health, and reentry
+        organizations into a single network so no one falls through the cracks.</p>
+      </div>
+      <div class="footer-col"><h4>Explore</h4><a href="find-support.html">Find Support</a><a href="partners/">Partners</a><a href="initiatives/">Initiatives</a><a href="needs/">Needs</a></div><div class="footer-col"><h4>Organization</h4><a href="about.html">About</a><a href="resources/">Resources</a><a href="get-involved.html">Get Involved</a></div><div class="footer-col"><h4>Take Action</h4><a href="donate.html">Donate</a><a href="join.html">Join CPI</a><a href="contact.html">Contact</a><a href="portal.html">Partner Portal</a></div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&copy; <span data-year>2026</span> Community Partners Initiatives. People &bull; Partnerships &bull; Progress.</span>
+    <span>cpinitiatives.org</span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
