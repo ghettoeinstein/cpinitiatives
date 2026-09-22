@@ -81,3 +81,4 @@ directory root, not inside `cpi/`). That means a `git add`/`commit` run from
 was initialized separately, scoped to `cpi/` only, to avoid that risk — but
 the home-directory repo still exists and is worth cleaning up separately.
 # cpinitiatives
+# cpinitiatives
