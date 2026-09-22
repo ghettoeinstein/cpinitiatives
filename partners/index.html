@@ -27,9 +27,11 @@
       <span>Community Partners Initiatives</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="../">Home</a><a href="../find-support.html">Find Support</a><a href="../partners/" aria-current="page">Partners</a><a href="../initiatives/">Initiatives</a><a href="../resources/">Resources</a><a href="../about.html">About</a>
+      <a href="../">Home</a><a href="../find-support.html">Find Support</a><a href="../partners/" aria-current="page">Partners</a><a href="../initiatives/">Initiatives</a><a href="../about.html">About</a><a href="../resources/">Resources</a><a href="../get-involved.html">Get Involved</a>
     </nav>
     <div class="nav-utility">
+      <a class="nav-search-btn" href="../find-support.html" aria-label="Search CPI">&#128269; Search</a>
+      <a class="nav-search-btn" href="../portal.html">Partner Portal</a>
       <a class="btn btn-tertiary" style="text-decoration:none" href="../join.html">Join CPI</a>
       <a class="btn btn-primary donate-btn-nav" href="../donate.html">Donate</a>
     </div>
@@ -40,7 +42,7 @@
 </header>
 <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
   <div class="container">
-    <a href="../">Home</a><a href="../find-support.html">Find Support</a><a href="../partners/">Partners</a><a href="../initiatives/">Initiatives</a><a href="../resources/">Resources</a><a href="../about.html">About</a><a href="../needs/">Community Needs</a><a href="../get-involved.html">Get Involved</a>
+    <a href="../">Home</a><a href="../find-support.html">Find Support</a><a href="../partners/">Partners</a><a href="../initiatives/">Initiatives</a><a href="../about.html">About</a><a href="../resources/">Resources</a><a href="../get-involved.html">Get Involved</a><a href="../needs/">Community Needs</a><a href="../portal.html">Partner Portal</a>
     <a class="btn btn-primary btn-block" href="../donate.html">Donate</a>
     <a class="btn btn-secondary btn-block mt-16" href="../join.html">Join CPI</a>
   </div>
@@ -77,11 +79,19 @@
           <option value="all">All Locations</option>
           <option value="compton">Compton</option><option value="south los angeles">South Los Angeles</option><option value="watts">Watts</option><option value="gardena">Gardena</option><option value="inglewood">Inglewood</option><option value="long beach">Long Beach</option><option value="carson">Carson</option>
         </select>
+        <select id="filter-referral" aria-label="Filter by referral status">
+          <option value="all">Any Referral Status</option>
+          <option value="yes">Accepting Referrals</option>
+        </select>
+        <select id="filter-language" aria-label="Filter by language">
+          <option value="all">All Languages</option>
+          <option value="english">English</option><option value="khmer">Khmer</option><option value="spanish">Spanish</option><option value="tagalog">Tagalog</option>
+        </select>
       </div>
       <p class="results-count" id="results-count"></p>
     </div>
     <div class="card-grid cols-3" id="partner-results">
-<article class="partner-card" data-name="community hope center" data-categories="housing,whole-person" data-locations="compton,south los angeles">
+<article class="partner-card" data-name="community hope center" data-categories="housing,whole-person" data-locations="compton,south los angeles" data-referral="yes" data-languages="english,spanish">
   <div class="card-logo">CH</div>
   <h3 class="card-title">Community Hope Center</h3>
   <div class="service-chip-row"><span class="service-chip">Housing Stability</span><span class="service-chip">Whole-Person Support</span></div>
@@ -94,7 +104,7 @@
   <a class="card-footer-link" href="../partners/community-hope-center/">View Organization &rarr;</a>
 </article>
 
-<article class="partner-card" data-name="horizon workforce alliance" data-categories="workforce" data-locations="long beach,carson">
+<article class="partner-card" data-name="horizon workforce alliance" data-categories="workforce" data-locations="long beach,carson" data-referral="yes" data-languages="english,spanish,khmer">
   <div class="card-logo">HW</div>
   <h3 class="card-title">Horizon Workforce Alliance</h3>
   <div class="service-chip-row"><span class="service-chip">Workforce & Economic Mobility</span></div>
@@ -107,7 +117,7 @@
   <a class="card-footer-link" href="../partners/horizon-workforce-alliance/">View Organization &rarr;</a>
 </article>
 
-<article class="partner-card" data-name="watts wellness collective" data-categories="health" data-locations="watts,south los angeles">
+<article class="partner-card" data-name="watts wellness collective" data-categories="health" data-locations="watts,south los angeles" data-referral="yes" data-languages="english,spanish">
   <div class="card-logo">WW</div>
   <h3 class="card-title">Watts Wellness Collective</h3>
   <div class="service-chip-row"><span class="service-chip">Health & Wellness</span></div>
@@ -120,7 +130,7 @@
   <a class="card-footer-link" href="../partners/watts-wellness-collective/">View Organization &rarr;</a>
 </article>
 
-<article class="partner-card" data-name="gardena family resource network" data-categories="whole-person" data-locations="gardena,inglewood">
+<article class="partner-card" data-name="gardena family resource network" data-categories="whole-person" data-locations="gardena,inglewood" data-referral="yes" data-languages="english,spanish,tagalog">
   <div class="card-logo">GF</div>
   <h3 class="card-title">Gardena Family Resource Network</h3>
   <div class="service-chip-row"><span class="service-chip">Whole-Person Support</span></div>
@@ -133,7 +143,7 @@
   <a class="card-footer-link" href="../partners/gardena-family-resource-network/">View Organization &rarr;</a>
 </article>
 
-<article class="partner-card" data-name="second chance works" data-categories="workforce,whole-person" data-locations="compton,long beach">
+<article class="partner-card" data-name="second chance works" data-categories="workforce,whole-person" data-locations="compton,long beach" data-referral="yes" data-languages="english,spanish">
   <div class="card-logo">SC</div>
   <h3 class="card-title">Second Chance Works</h3>
   <div class="service-chip-row"><span class="service-chip">Workforce & Economic Mobility</span><span class="service-chip">Whole-Person Support</span></div>
@@ -146,7 +156,7 @@
   <a class="card-footer-link" href="../partners/second-chance-works/">View Organization &rarr;</a>
 </article>
 
-<article class="partner-card" data-name="south bay health partners" data-categories="health" data-locations="carson,gardena,long beach">
+<article class="partner-card" data-name="south bay health partners" data-categories="health" data-locations="carson,gardena,long beach" data-referral="yes" data-languages="english,spanish,khmer,tagalog">
   <div class="card-logo">SB</div>
   <h3 class="card-title">South Bay Health Partners</h3>
   <div class="service-chip-row"><span class="service-chip">Health & Wellness</span></div>

@@ -389,8 +389,9 @@ NAV_LINKS = [
     ("/find-support.html", "Find Support"),
     ("/partners/", "Partners"),
     ("/initiatives/", "Initiatives"),
-    ("/resources/", "Resources"),
     ("/about.html", "About"),
+    ("/resources/", "Resources"),
+    ("/get-involved.html", "Get Involved"),
 ]
 
 FOOTER_COLUMNS = [
@@ -451,7 +452,7 @@ def nav_html(active_path, depth):
     mobile_links = []
     mobile_extra = [
         ("/needs/", "Community Needs"),
-        ("/get-involved.html", "Get Involved"),
+        ("/portal.html", "Partner Portal"),
     ]
     for path, label in NAV_LINKS + mobile_extra:
         mobile_links.append(f'<a href="{href(path)}">{label}</a>')
@@ -468,6 +469,8 @@ def nav_html(active_path, depth):
       {''.join(links)}
     </nav>
     <div class="nav-utility">
+      <a class="nav-search-btn" href="{href('/find-support.html')}" aria-label="Search CPI">&#128269; Search</a>
+      <a class="nav-search-btn" href="{href('/portal.html')}">Partner Portal</a>
       <a class="btn btn-tertiary" style="text-decoration:none" href="{href('/join.html')}">Join CPI</a>
       <a class="btn btn-primary donate-btn-nav" href="{href('/donate.html')}">Donate</a>
     </div>
@@ -576,7 +579,7 @@ def partner_card(p_, depth):
     initials = "".join(w[0] for w in p_["name"].split()[:2]).upper()
     referral = '<span class="referral-badge">Accepting Referrals</span>' if p_["accepting_referrals"] else ""
     return f"""
-<article class="partner-card" data-name="{esc(p_['name'].lower())}" data-categories="{','.join(p_['categories'])}" data-locations="{','.join(l.lower() for l in p_['locations'])}">
+<article class="partner-card" data-name="{esc(p_['name'].lower())}" data-categories="{','.join(p_['categories'])}" data-locations="{','.join(l.lower() for l in p_['locations'])}" data-referral="{'yes' if p_['accepting_referrals'] else 'no'}" data-languages="{','.join(l.lower() for l in p_['languages'])}">
   <div class="card-logo">{initials}</div>
   <h3 class="card-title">{esc(p_['name'])}</h3>
   {service_chips(p_['categories'])}
@@ -593,8 +596,10 @@ def partner_card(p_, depth):
 
 def initiative_card(i, depth):
     href = rel_prefix(depth) + f"initiatives/{i['slug']}/"
+    locs = ",".join(sorted(l.lower() for l in LOCATIONS if l in i["geography"]))
+    needs = "|".join(n.lower() for n in i["needs"])
     return f"""
-<article class="initiative-card" data-title="{esc(i['title'].lower())}" data-category="{i['category']}" data-status="{i['status']}">
+<article class="initiative-card" data-title="{esc(i['title'].lower())}" data-category="{i['category']}" data-status="{i['status']}" data-locations="{locs}" data-needs="{esc(needs)}">
   {status_badge(i['status'])}
   {service_chips([i['category']])}
   <h3 class="card-title">{esc(i['title'])}</h3>
@@ -652,17 +657,27 @@ def build_home():
 
     body = f"""
 <section class="hero">
-  <div class="container">
-    <span class="hero-eyebrow">Community Partners Initiatives</span>
-    <h1>Connecting People.<br>Uniting Partners.<br>Creating Opportunity.</h1>
-    <p class="hero-sub">CPI connects community organizations across housing, workforce development,
-    health, reentry, and wraparound services so people can reach the right support and
-    organizations can accomplish more together.</p>
-    <blockquote class="mission-quote">&ldquo;{MISSION_STATEMENT}&rdquo;</blockquote>
-    <div class="hero-ctas">
-      <a class="btn btn-primary" href="donate.html">Give Now</a>
-      <a class="btn btn-secondary" href="join.html">Join as a Community Partner</a>
-      <a class="btn btn-tertiary" href="initiatives/">Explore Current Initiatives</a>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="hero-eyebrow">Community Partners Initiatives <i></i></span>
+      <h1>Community works better <em>together.</em></h1>
+      <p class="hero-sub">CPI connects trusted organizations across housing, workforce, health, reentry, and wraparound services—so people find the right support and partners can accomplish more.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="find-support.html">Find Support <span>→</span></a>
+        <a class="btn btn-secondary" href="join.html">Join the Network</a>
+      </div>
+      <p class="hero-note"><span class="pulse-dot"></span> A growing network for Los Angeles County</p>
+    </div>
+    <div class="network-art" aria-label="CPI connects community partners">
+      <div class="network-glow"></div>
+      <div class="network-ring ring-one"></div><div class="network-ring ring-two"></div>
+      <div class="network-line line-one"></div><div class="network-line line-two"></div><div class="network-line line-three"></div>
+      <div class="network-core"><strong>CPI</strong><span>one network</span></div>
+      <div class="network-node node-housing"><b>⌂</b><span>Housing</span></div>
+      <div class="network-node node-health"><b>+</b><span>Health</span></div>
+      <div class="network-node node-work"><b>↗</b><span>Workforce</span></div>
+      <div class="network-node node-care"><b>♡</b><span>Whole-person</span></div>
+      <span class="network-caption">People · Partnerships · Progress</span>
     </div>
   </div>
 </section>
@@ -850,6 +865,7 @@ def build_find_support():
 def build_partners_index():
     depth = 1
     cards = "".join(partner_card(p, depth) for p in PARTNERS)
+    all_languages = sorted(set(l for p in PARTNERS for l in p["languages"]))
     body = f"""
 <section class="page-header">
   <div class="container">
@@ -876,6 +892,14 @@ def build_partners_index():
         <select id="filter-location" aria-label="Filter by location">
           <option value="all">All Locations</option>
           {''.join(f'<option value="{l.lower()}">{l}</option>' for l in LOCATIONS)}
+        </select>
+        <select id="filter-referral" aria-label="Filter by referral status">
+          <option value="all">Any Referral Status</option>
+          <option value="yes">Accepting Referrals</option>
+        </select>
+        <select id="filter-language" aria-label="Filter by language">
+          <option value="all">All Languages</option>
+          {''.join(f'<option value="{l.lower()}">{l}</option>' for l in all_languages)}
         </select>
       </div>
       <p class="results-count" id="results-count"></p>
@@ -979,6 +1003,8 @@ def build_partner_detail(p_):
 def build_initiatives_index():
     depth = 1
     cards = "".join(initiative_card(i, depth) for i in INITIATIVES)
+    locations_used = sorted(set(l for i in INITIATIVES for l in LOCATIONS if l in i["geography"]))
+    needs_used = sorted(set(n for i in INITIATIVES for n in i["needs"]))
     body = f"""
 <section class="page-header">
   <div class="container">
@@ -998,6 +1024,14 @@ def build_initiatives_index():
         <select id="filter-status" aria-label="Filter by status">
           <option value="all">All Statuses</option>
           {''.join(f'<option value="{s}">{label}</option>' for s, label in STATUS_LABELS.items())}
+        </select>
+        <select id="filter-location" aria-label="Filter by location">
+          <option value="all">All Locations</option>
+          {''.join(f'<option value="{l.lower()}">{l}</option>' for l in locations_used)}
+        </select>
+        <select id="filter-need" aria-label="Filter by type of support needed">
+          <option value="all">All Support Types</option>
+          {''.join(f'<option value="{esc(n.lower())}">{esc(n)}</option>' for n in needs_used)}
         </select>
       </div>
       <p class="results-count" id="results-count"></p>
@@ -1530,6 +1564,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var searchInput = document.getElementById('partner-search');
   var catSelect = document.getElementById('filter-category');
   var locSelect = document.getElementById('filter-location');
+  var referralSelect = document.getElementById('filter-referral');
+  var langSelect = document.getElementById('filter-language');
   var cards = Array.prototype.slice.call(document.querySelectorAll('#partner-results .partner-card'));
   var countEl = document.getElementById('results-count');
   var emptyEl = document.getElementById('empty-state');
@@ -1538,15 +1574,20 @@ document.addEventListener('DOMContentLoaded', function () {
     var q = (searchInput && searchInput.value || '').toLowerCase().trim();
     var cat = catSelect ? catSelect.value : 'all';
     var loc = locSelect ? locSelect.value : 'all';
+    var referral = referralSelect ? referralSelect.value : 'all';
+    var lang = langSelect ? langSelect.value : 'all';
     var visible = 0;
     cards.forEach(function (card) {
       var name = card.getAttribute('data-name') || '';
       var cats = (card.getAttribute('data-categories') || '').split(',');
       var locs = (card.getAttribute('data-locations') || '').split(',');
+      var langs = (card.getAttribute('data-languages') || '').split(',');
       var matchesQ = !q || name.indexOf(q) !== -1;
       var matchesCat = cat === 'all' || cats.indexOf(cat) !== -1;
       var matchesLoc = loc === 'all' || locs.indexOf(loc) !== -1;
-      var show = matchesQ && matchesCat && matchesLoc;
+      var matchesReferral = referral === 'all' || card.getAttribute('data-referral') === referral;
+      var matchesLang = lang === 'all' || langs.indexOf(lang) !== -1;
+      var show = matchesQ && matchesCat && matchesLoc && matchesReferral && matchesLang;
       card.hidden = !show;
       if (show) visible++;
     });
@@ -1554,7 +1595,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (emptyEl) emptyEl.hidden = visible !== 0;
   }
 
-  [searchInput, catSelect, locSelect].forEach(function (el) {
+  [searchInput, catSelect, locSelect, referralSelect, langSelect].forEach(function (el) {
     if (el) el.addEventListener('input', apply);
   });
 
@@ -1614,6 +1655,8 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
   var catSelect = document.getElementById('filter-category');
   var statusSelect = document.getElementById('filter-status');
+  var locSelect = document.getElementById('filter-location');
+  var needSelect = document.getElementById('filter-need');
   var cards = Array.prototype.slice.call(document.querySelectorAll('#initiative-results .initiative-card'));
   var countEl = document.getElementById('results-count');
   var emptyEl = document.getElementById('empty-state');
@@ -1621,11 +1664,17 @@ document.addEventListener('DOMContentLoaded', function () {
   function apply() {
     var cat = catSelect ? catSelect.value : 'all';
     var status = statusSelect ? statusSelect.value : 'all';
+    var loc = locSelect ? locSelect.value : 'all';
+    var need = needSelect ? needSelect.value : 'all';
     var visible = 0;
     cards.forEach(function (card) {
+      var locs = (card.getAttribute('data-locations') || '').split(',');
+      var needs = (card.getAttribute('data-needs') || '').split('|');
       var matchesCat = cat === 'all' || card.getAttribute('data-category') === cat;
       var matchesStatus = status === 'all' || card.getAttribute('data-status') === status;
-      var show = matchesCat && matchesStatus;
+      var matchesLoc = loc === 'all' || locs.indexOf(loc) !== -1;
+      var matchesNeed = need === 'all' || needs.indexOf(need) !== -1;
+      var show = matchesCat && matchesStatus && matchesLoc && matchesNeed;
       card.hidden = !show;
       if (show) visible++;
     });
@@ -1633,7 +1682,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (emptyEl) emptyEl.hidden = visible !== 0;
   }
 
-  [catSelect, statusSelect].forEach(function (el) {
+  [catSelect, statusSelect, locSelect, needSelect].forEach(function (el) {
     if (el) el.addEventListener('change', apply);
   });
   apply();

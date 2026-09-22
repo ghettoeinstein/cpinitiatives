@@ -27,9 +27,11 @@
       <span>Community Partners Initiatives</span>
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="../">Home</a><a href="../find-support.html">Find Support</a><a href="../partners/">Partners</a><a href="../initiatives/" aria-current="page">Initiatives</a><a href="../resources/">Resources</a><a href="../about.html">About</a>
+      <a href="../">Home</a><a href="../find-support.html">Find Support</a><a href="../partners/">Partners</a><a href="../initiatives/" aria-current="page">Initiatives</a><a href="../about.html">About</a><a href="../resources/">Resources</a><a href="../get-involved.html">Get Involved</a>
     </nav>
     <div class="nav-utility">
+      <a class="nav-search-btn" href="../find-support.html" aria-label="Search CPI">&#128269; Search</a>
+      <a class="nav-search-btn" href="../portal.html">Partner Portal</a>
       <a class="btn btn-tertiary" style="text-decoration:none" href="../join.html">Join CPI</a>
       <a class="btn btn-primary donate-btn-nav" href="../donate.html">Donate</a>
     </div>
@@ -40,7 +42,7 @@
 </header>
 <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
   <div class="container">
-    <a href="../">Home</a><a href="../find-support.html">Find Support</a><a href="../partners/">Partners</a><a href="../initiatives/">Initiatives</a><a href="../resources/">Resources</a><a href="../about.html">About</a><a href="../needs/">Community Needs</a><a href="../get-involved.html">Get Involved</a>
+    <a href="../">Home</a><a href="../find-support.html">Find Support</a><a href="../partners/">Partners</a><a href="../initiatives/">Initiatives</a><a href="../about.html">About</a><a href="../resources/">Resources</a><a href="../get-involved.html">Get Involved</a><a href="../needs/">Community Needs</a><a href="../portal.html">Partner Portal</a>
     <a class="btn btn-primary btn-block" href="../donate.html">Donate</a>
     <a class="btn btn-secondary btn-block mt-16" href="../join.html">Join CPI</a>
   </div>
@@ -70,11 +72,19 @@
           <option value="all">All Statuses</option>
           <option value="open">Open</option><option value="forming">Forming</option><option value="active">Active</option><option value="funded">Funded</option><option value="delivering">Delivering</option><option value="completed">Completed</option>
         </select>
+        <select id="filter-location" aria-label="Filter by location">
+          <option value="all">All Locations</option>
+          <option value="carson">Carson</option><option value="compton">Compton</option><option value="long beach">Long Beach</option><option value="south los angeles">South Los Angeles</option><option value="watts">Watts</option>
+        </select>
+        <select id="filter-need" aria-label="Filter by type of support needed">
+          <option value="all">All Support Types</option>
+          <option value="clinical partners">Clinical partners</option><option value="community outreach partners">Community outreach partners</option><option value="employers">Employers</option><option value="funders">Funders</option><option value="funding">Funding</option><option value="housing providers">Housing providers</option><option value="job training partners">Job training partners</option><option value="mentors">Mentors</option><option value="property partners">Property partners</option><option value="recruiters">Recruiters</option><option value="transportation">Transportation</option><option value="transportation support">Transportation support</option>
+        </select>
       </div>
       <p class="results-count" id="results-count"></p>
     </div>
     <div class="card-grid cols-3" id="initiative-results">
-<article class="initiative-card" data-title="transitional housing expansion" data-category="housing" data-status="active">
+<article class="initiative-card" data-title="transitional housing expansion" data-category="housing" data-status="active" data-locations="compton,south los angeles" data-needs="housing providers|property partners|funders|transportation support">
   <span class="status-badge status-active">Active</span>
   <div class="service-chip-row"><span class="service-chip">Housing Stability</span></div>
   <h3 class="card-title">Transitional Housing Expansion</h3>
@@ -84,7 +94,7 @@
   <a class="card-footer-link" href="../initiatives/transitional-housing-expansion/">Partner on This Initiative &rarr;</a>
 </article>
 
-<article class="initiative-card" data-title="fair-chance employer network" data-category="workforce" data-status="forming">
+<article class="initiative-card" data-title="fair-chance employer network" data-category="workforce" data-status="forming" data-locations="carson,compton,long beach" data-needs="employers|job training partners|mentors|recruiters">
   <span class="status-badge status-forming">Forming</span>
   <div class="service-chip-row"><span class="service-chip">Workforce & Economic Mobility</span></div>
   <h3 class="card-title">Fair-Chance Employer Network</h3>
@@ -94,7 +104,7 @@
   <a class="card-footer-link" href="../initiatives/fair-chance-employer-network/">Partner on This Initiative &rarr;</a>
 </article>
 
-<article class="initiative-card" data-title="mobile behavioral health access" data-category="health" data-status="open">
+<article class="initiative-card" data-title="mobile behavioral health access" data-category="health" data-status="open" data-locations="south los angeles,watts" data-needs="clinical partners|community outreach partners|transportation|funding">
   <span class="status-badge status-open">Open</span>
   <div class="service-chip-row"><span class="service-chip">Health & Wellness</span></div>
   <h3 class="card-title">Mobile Behavioral Health Access</h3>
