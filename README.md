@@ -63,15 +63,19 @@ Once you have a processor account, drop its embeddable widget in:
 All three are client-side embeds and work fine on GitHub Pages. Until one is
 wired up, the page offers a `mailto:` fallback for direct gifts.
 
-## Deploying to GitHub Pages
+## Deploying to free GitHub Pages
 
-1. This directory should be its own git repository (see note below about the
-   parent folder).
-2. Push to a GitHub repo (e.g. `cpi` or `cpinitiatives-org`).
-3. In repo Settings → Pages, set source to the `main` branch, root folder.
-4. `CNAME` is already present with `cpinitiatives.org` — point your domain's
-   DNS (A records to GitHub Pages IPs, or a CNAME record if using a subdomain)
-   at GitHub Pages, per GitHub's custom-domain docs.
+This site is intentionally static and requires no paid hosting, server, database, or build service.
+
+1. In repo **Settings → Pages**, choose **Deploy from a branch**.
+2. Select branch `main` and folder `/ (root)`.
+3. Keep the root `.nojekyll` file so GitHub serves every static asset directly.
+4. `CNAME` is present with `cpinitiatives.org`.
+5. At Squarespace DNS, use four A records for `@`: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`.
+6. Add a CNAME for `www` pointing to `ghettoeinstein.github.io`.
+7. Wait for GitHub TLS certificate provisioning, then enable **Enforce HTTPS**.
+
+The public MVP works without a backend: Homepage → Find Support/Partners → Initiative → Join CPI. Forms use static-friendly fallbacks until a hosted form service or backend is added.
 
 ## Known repo issue (unrelated to this build)
 
