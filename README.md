@@ -80,3 +80,4 @@ directory root, not inside `cpi/`). That means a `git add`/`commit` run from
 `~/cpi` operates on your entire home folder unless you're careful. This repo
 was initialized separately, scoped to `cpi/` only, to avoid that risk — but
 the home-directory repo still exists and is worth cleaning up separately.
+# cpinitiatives
